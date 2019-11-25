@@ -32,16 +32,18 @@ print(parse_nf.id)
 | `id()`              |*id da Nota Fiscal.*                             | int      |
 | `ide()`             |*Informações de identificação*                   | dict     |
 | `emitente()`        |*Informações do imitente*                        | dict     |
+| `ender_emit()`      |*Endereço do imitente*                           | dict     |
 | `destinatario()`    |*Informações do destinatário*                    | list     |
 |`det_itens()`        |*Produto(s) contidos na nota.*                   | dict     |
 | `total()`           |*Todos valores da nota*                          | dict     |
 |`transportadora()`   |*Informações de transporte*                      | dict     |
-| `cobranca()`        |*Informações sobre cobrança*                     | dict     |
+| `fatura()`          |*Informações sobre fatura de cobrança            | dict     |
+| `duplicata()`       |*Informações sobre duplicata*                    | dict     |
 |`det_pagamento()`    |*Meio de pagamento e valor da soma.*             | dict     |
 | `info_adicionais()` |*Informações Complementares*                     | string   |
 |`tec_responsavel()`  |*Técnico Responsável.*                           | dict     |
 | `assinatura()`      |*Assinatura digital da nota*                     | dict     | 
-|`protocolo()`        |*Número de protocolo,chave e status nota.*       | string   |
+|`protocolo()`        |*Informações do Protocolo de resposta.*          | string   |
 	
 ### Autores:
 

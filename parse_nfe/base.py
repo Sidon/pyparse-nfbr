@@ -1,5 +1,6 @@
 import xmltodict
 
+
 class _Parse:
 
     def set_xml(self, xml):
@@ -17,6 +18,9 @@ class _Parse:
     def emitente(self):
         return self._nf['nfeProc']['NFe']['infNFe']['emit']
 
+    def ender_emit(self):
+        return self._nf['nfeProc']['NFe']['infNFe']['emit']['enderEmit']
+
     def destinatario(self):
         return self._nf['nfeProc']['NFe']['infNFe']['dest']
 
@@ -24,26 +28,29 @@ class _Parse:
         return self._nf['nfeProc']['NFe']['infNFe']['det']
 
     def total(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['total']
+        return self._nf['nfeProc']['NFe']['infNFe']['total']['ICMSTot']
 
     def transportadora(self):
         return self._nf['nfeProc']['NFe']['infNFe']['transp']
 
-    def cobranca(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['cobr']
+    def fatura(self):
+        return self._nf['nfeProc']['NFe']['infNFe']['cobr']['fat']
+
+    def duplicata(self):
+        return self._nf['nfeProc']['NFe']['infNFe']['cobr']['dup']
 
     def det_pagamento(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['pag']
+        return self._nf['nfeProc']['NFe']['infNFe']['pag']['detPag']
 
     def info_adicionais(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['infAdic']
+        return self._nf['nfeProc']['NFe']['infNFe']['infAdic']['infCpl']
 
     def tec_responsavel(self):
         return self._nf['nfeProc']['NFe']['infNFe']['infRespTec']
 
     def assinatura(self):
         return self._nf['nfeProc']['NFe']['Signature']
-    
+
     def protocolo(self):
         return self._nf['nfeProc']['protNFe']
 
