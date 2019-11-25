@@ -18,5 +18,10 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    install_requires=[
+        'xmltodict==0.12.0'
+    ],
     python_requires='>=3.6',
+
+
 )
