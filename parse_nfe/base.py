@@ -3,11 +3,17 @@ import xmltodict
 
 class _Parse:
 
+    def __init__(self):
+        self._nf = None
+
     def set_xml(self, xml):
         try:
             self._nf = xmltodict.parse(xml)
         except:
             print('Erro no parse do arquivo')
+
+        if self._nf['nfeProc'].get('nfeProc'):
+            self._nf = self._nf['nfeProc']
 
     def id(self):
         return self._nf['nfeProc']['NFe']['infNFe']['@Id']
@@ -25,24 +31,45 @@ class _Parse:
         return self._nf['nfeProc']['NFe']['infNFe']['dest']
 
     def det_itens(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['det']
+        if type(self._nf['nfeProc']['NFe']['infNFe']['det']) != type([]):
+            return [self._nf['nfeProc']['NFe']['infNFe']['det']]
+        else:
+            return self._nf['nfeProc']['NFe']['infNFe']['det']
 
     def total(self):
         return self._nf['nfeProc']['NFe']['infNFe']['total']['ICMSTot']
 
-    def transportadora(self):
+    def transp(self):
         return self._nf['nfeProc']['NFe']['infNFe']['transp']
 
     def fatura(self):
+        if not self._nf['nfeProc']['NFe']['infNFe'].get('cobr'):
+            return None
         return self._nf['nfeProc']['NFe']['infNFe']['cobr']['fat']
 
     def duplicata(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['cobr']['dup']
+        if self._nf['nfeProc']['NFe']['infNFe'].get('cobr') is None:
+            return None
+
+        if self._nf['nfeProc']['NFe']['infNFe']['cobr'].get('dup'):
+            if type(self._nf['nfeProc']['NFe']['infNFe']['cobr']['dup']) != type([]):
+                return [self._nf['nfeProc']['NFe']['infNFe']['cobr']['dup']]
+            else:
+                return self._nf['nfeProc']['NFe']['infNFe']['cobr']['dup']
 
     def det_pagamento(self):
-        return self._nf['nfeProc']['NFe']['infNFe']['pag']['detPag']
+
+        if self._nf['nfeProc']['NFe']['infNFe'].get('pag') is None:
+            return None
+
+        if type(self._nf['nfeProc']['NFe']['infNFe']['pag']['detPag']) != type([]):
+            return [self._nf['nfeProc']['NFe']['infNFe']['pag']['detPag']]
+        else:
+            return self._nf['nfeProc']['NFe']['infNFe']['pag']['detPag']
 
     def info_adicionais(self):
+        if self._nf['nfeProc']['NFe']['infNFe'].get('infAdic') is None:
+            return None
         return self._nf['nfeProc']['NFe']['infNFe']['infAdic']['infCpl']
 
     def tec_responsavel(self):
