@@ -1,4 +1,5 @@
 import xmltodict
+import pendulum
 
 
 class _Parse:
@@ -20,6 +21,19 @@ class _Parse:
 
     def ide(self):
         return self._nf['nfeProc']['NFe']['infNFe']['ide']
+
+    def dhemi(self):
+        return self._nf['nfeProc']['NFe']['infNFe']['ide']['dhEmi']
+
+    def dhsaient(self):
+
+        if self._nf['nfeProc']['NFe']['infNFe']['ide']['dhSaiEnt'] is None:
+            return '1800-01-01T00:00:00+00:00'
+        else:
+            return str(pendulum.parse(self._nf['nfeProc']['NFe']['infNFe']['ide']['dhSaiEnt']))
+
+    def dhrecbto(self):
+        return pendulum.parse(self._nf['nfeProc']['protNFe']['infProt']['dhRecbto']).to_datetime_string()
 
     def emitente(self):
         return self._nf['nfeProc']['NFe']['infNFe']['emit']
